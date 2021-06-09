@@ -8,16 +8,19 @@ class Pages extends BaseController
 	{   
         $data = [
             'title' => 'Seputar Webinar',
+            'slug' => '5-library-android-yang-patut-kamu-coba-di-2021'
         ];	
-		return view('pages/home', $data);
+		return view('pages/landingpage', $data);
 	}
 
-    public function about()
+    public function detail($slug)
     {
         $data = [
-            'title' => 'About Me'
+            'title' => 'Detail Webinar',
+            'judul' => '5 Library Android yang Patut Kamu Coba di 2021',
+            'slug' => $slug
         ];
-        return view('pages/about', $data);
+        return view('pages/detail_webinar', $data);
     }
 
     public function contact()
