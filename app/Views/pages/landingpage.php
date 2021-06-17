@@ -13,7 +13,7 @@
             <div class="col-lg-3 pb-5">
                 <div class="pt-lg-3">
                     <h4 class="mb-4">Daftar Webinar</h4>
-                    <p>Ayo segera daftar di webinar SMKN 69 dan perdalam wawasan menarik !
+                    <p>Ayo segera daftar di webinar SMKN 69 dan perdalam wawasan menarik!
                     </p>
                 </div>
             </div>

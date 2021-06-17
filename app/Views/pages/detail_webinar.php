@@ -37,6 +37,8 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Jadwal Pelaksanaan</h6>
                             </div>
                             <div class="card-body">
+                                <p class="text-dark text-justify"><?= date('d F Y', strtotime("now"));  ?> | 16:00 -
+                                    17:00 WIB</p>
                                 <p class="text-dark text-justify">Selasa, 8 Juni 2021 | 16:00 - 17:00 WIB</p>
                             </div>
                         </div>
@@ -68,16 +70,15 @@
                                 <?php $urlEncode = base_url('pages/' . $slug) ?>
                                 <input type="text" class="form-control mb-2" value="<?= $urlEncode ?>" id="myInput"
                                     readonly>
-                                <button onclick="myFunction()" href="<?= base_url('/') ?>"
-                                    class="mb-3 btn btn-dark btn-block">
+                                <button onclick="myFunction()" class=" mb-3 btn btn-dark btn-block">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-clone"></i>
                                     </span>
-                                    <span class="text">Salin Link</span>
+                                    <span>Salin Link</span>
                                 </button>
                                 <div class="row mb-2 justify-content-center">
                                     <div class="col-lg font-weight-bold text-dark">
-                                        <h3 class="h5 g-color-gray-dark-v1 g-mb-10">Share With Friends</h3>
+                                        <h5>Share With Friends</h5>
                                         <div class="d-flex justify-content-center">
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item ">
@@ -103,18 +104,30 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="" class="my-3 btn btn-info btn-block">
+                                <?php if ($is_register == 0) { ?>
+                                <form action="<?= base_url('pages/registrasi_webinar') ?>" method="POST"
+                                    enctype="multipart/form-data">
+                                    <!-- <input type="hidden" name="user_id" id="user_id" value="<?= $user['id'] ?>"> -->
+                                    <input type="hidden" name="webinar_id" id="webinar_id" value="<?= $value; ?>">
+                                    <button class="mb-3 btn btn-info btn-block">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-pen"></i>
+                                        </span>
+                                        <span class="text">Ikuti Webinar</span>
+                                    </button>
+                                </form>
+                                <?php } else { ?>
+
+                                <h6 class="m-0 font-weight-bold text-dark mb-3"> Anda telah terdaftar </h6>
+                                <a href="<?= base_url()?>" class="mb-3 btn btn-danger btn-block"
+                                    onclick="return confirm('Yakin?');">
                                     <span class="icon text-white-50">
-                                        <i class="fas fa-pen"></i>
+                                        <i class="fas fa-trash"></i>
                                     </span>
-                                    <span class="text">Ikuti Webinar</span>
+                                    <span class="text">Batal</span>
                                 </a>
-                                <a href="<?= base_url('/') ?>" class="mb-3 btn btn-secondary btn-block">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-reply"></i>
-                                    </span>
-                                    <span class="text">Kembali</span>
-                                </a>
+
+                                <?php }; ?>
                             </div>
                         </div>
                     </div>
