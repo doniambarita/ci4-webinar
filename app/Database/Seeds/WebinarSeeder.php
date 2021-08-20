@@ -10,35 +10,35 @@ class WebinarSeeder extends Seeder
 	public function run()
 	{
 		$data = [
-				[
-					'webinar_nama'  => '5 Library Android yang Patut Kamu Coba di 2021',
-					'slug'    		=> '5-library-android-yang-patut-kamu-coba-di-2021',
-					'deskripsi'    	=> 'Pembahasan tentang library yang dapat membantu dalam mengembangkan aplikasi. Penasaran library 
-										apa sajakah itu? Yuk segera daftar dan ikuti webinar ini',
-					'narasumber'    => 'Wiwit Lesmana',
-					'tanggal'    	=> '2021-06-27',
-					'jam'    		=> '19:00',
-					'biaya'    		=> 'Gratis',
-					'webinar_media' => 'Google Meet',
-					'poster'    	=> 'webinar_poster1.png',
-					'created_at'  	=> Time::now(),
-					'updated_at'	=> Time::now()
-				],
-				[
-					'webinar_nama'  => 'Computational',
-					'slug'    		=> 'computational',
-					'deskripsi'    	=> 'Pembahasan tentang penggunaan algoritma dalam menyelesaikan 
-										masalah',
-					'narasumber'    => 'James',
-					'tanggal'    	=> '2021-06-22',
-					'jam'    		=> '10:00',
-					'biaya'    		=> 'HTM : 10K',
-					'webinar_media' => 'Zoom',
-					'poster'    	=> 'webinar_poster2.jpg',
-					'created_at'  	=> Time::now(),
-					'updated_at'	=> Time::now()
-				],
-				[
+			[
+				'webinar_nama'  => '5 Library Android yang Patut Kamu Coba di 2021',
+				'slug'    		=> '5-library-android-yang-patut-kamu-coba-di-2021',
+				'deskripsi'    	=> 'Pembahasan tentang library yang dapat membantu dalam mengembangkan aplikasi. Penasaran library 
+									apa sajakah itu? Yuk segera daftar dan ikuti webinar ini',
+				'narasumber'    => 'Wiwit Lesmana',
+				'tanggal'    	=> '2021-06-27',
+				'jam'    		=> '19:00',
+				'biaya'    		=> 'Gratis',
+				'webinar_media' => 'Google Meet',
+				'poster'    	=> 'webinar_poster1.png',
+				'created_at'  	=> Time::now(),
+				'updated_at'	=> Time::now()
+			],
+			[
+				'webinar_nama'  => 'Computational',
+				'slug'    		=> 'computational',
+				'deskripsi'    	=> 'Pembahasan tentang penggunaan algoritma dalam menyelesaikan 
+									masalah',
+				'narasumber'    => 'James',
+				'tanggal'    	=> '2021-06-22',
+				'jam'    		=> '10:00',
+				'biaya'    		=> 'HTM : 10K',
+				'webinar_media' => 'Zoom',
+				'poster'    	=> 'webinar_poster2.jpg',
+				'created_at'  	=> Time::now(),
+				'updated_at'	=> Time::now()
+			],
+			[
 					'webinar_nama'  => 'Menjadi Android Developer Yang Handal',
 					'slug'    		=> 'menjadi-android-developer-yang-handal',
 					'deskripsi'    	=> 'Peserta akan di berikan tips dan langkah-langkah untuk menjadi
