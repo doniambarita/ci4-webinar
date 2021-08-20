@@ -39,17 +39,17 @@ class WebinarSeeder extends Seeder
 				'updated_at'	=> Time::now()
 			],
 			[
-					'webinar_nama'  => 'Menjadi Android Developer Yang Handal',
-					'slug'    		=> 'menjadi-android-developer-yang-handal',
-					'deskripsi'    	=> 'Peserta akan di berikan tips dan langkah-langkah untuk menjadi
-										android developer yang handal secara detail serta terstruktur',
-					'narasumber'    => 'Nur Panto',
-					'tanggal'    	=> '2021-07-18',
-					'jam'    		=> '14:30',
-					'biaya'    		=> 'Gratis',
-					'webinar_media' => 'Google Meet',
-					'poster'    	=> 'webinar_poster3.jpg',
-					'created_at'  	=> Time::now(),
+				'webinar_nama'  => 'Menjadi Android Developer Yang Handal',
+				'slug'    		=> 'menjadi-android-developer-yang-handal',
+				'deskripsi'    	=> 'Peserta akan di berikan tips dan langkah-langkah untuk menjadi
+									android developer yang handal secara detail serta terstruktur',
+				'narasumber'    => 'Nur Panto',
+				'tanggal'    	=> '2021-07-18',
+				'jam'    		=> '14:30',
+				'biaya'    		=> 'Gratis',
+				'webinar_media' => 'Google Meet',
+				'poster'    	=> 'webinar_poster3.jpg',
+				'created_at'  	=> Time::now(),
 		 		'updated_at'	=> Time::now()
 		 	],
 		 	[

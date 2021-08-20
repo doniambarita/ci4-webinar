@@ -1,18 +1,22 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+<?php 
+$webinarSchedule = strtotime($webinar['tanggal'].' '.$webinar['jam']);
+$now = strtotime("now");
+?>
 <section id="detail">
     <div class="container">
         <div class="shadow-lg p-3 mb-5 bg-white rounded">
             <div class="p-4 mb-3 card-body">
                 <center>
-                    <h3 class="mb-4 font-weight-bold text-dark"><?= $judul ?></h3>
+                    <h3 class="mb-4 font-weight-bold text-dark"><?= $webinar['webinar_nama']; ?></h3>
                 </center>
                 <div class="row">
-                    <div class="col-sm col-lg-8">
-                        <div class="mb-4" style="width:400px;">
-                            <img class="img-fluid shadow-lg mx-auto mb-4" style="max-width: 100%;"
-                                src="https://d17ivq9b7rppb3.cloudfront.net/original/event/dicoding_developer_coaching_38_android_5_library_android_yang_patut_kamu_coba_di_2021_logo_040621084722.png">
+                    <div class="col-sm-12 col-md-12 col-lg-8">
+                        <div class="mb-4">
+                            <img class="img-fluid shadow-lg mx-auto mb-4" width="430px"
+                                src="<?= base_url('img/' . $webinar['poster']); ?>">
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
@@ -20,7 +24,7 @@
                             </div>
                             <div class="card-body">
                                 <p class="text-dark text-justify">
-                                    Percobaan webinar
+                                    <?= $webinar['deskripsi']; ?>
                                 </p>
                             </div>
                         </div>
@@ -29,7 +33,7 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Narasumber</h6>
                             </div>
                             <div class="card-body">
-                                <p class="text-dark text-justify">Jagoan di bidangnya</p>
+                                <p class="text-dark text-justify"><?= $webinar['narasumber']; ?></p>
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -37,9 +41,9 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Jadwal Pelaksanaan</h6>
                             </div>
                             <div class="card-body">
-                                <p class="text-dark text-justify"><?= date('d F Y', strtotime("now"));  ?> | 16:00 -
-                                    17:00 WIB</p>
-                                <p class="text-dark text-justify">Selasa, 8 Juni 2021 | 16:00 - 17:00 WIB</p>
+                                <p class="text-dark text-justify"><?= $webinar['tanggal']; ?> | <?= $webinar['jam']; ?>
+                                    WIB
+                                </p>
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -47,27 +51,106 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Media</h6>
                             </div>
                             <div class="card-body">
-                                <p class="text-dark text-justify">Google Meet</p>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">Keikutsertaan</h6>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-dark text-justify">
-                                    <?php if($slug == 1){echo "Anda belum terdaftar pada Event";}else{echo "Anda telah terdaftar pada Event";} ?>
-                                </p>
+                                <p class="text-dark text-justify"><?= $webinar['webinar_media']; ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h6 class="m-0 font-weight-bold text-primary">Keikutsertaan</h6>
+                            </div>
+                            <div class="card-body text-justify">
+                                <div class="swal-detail_webinar" data-swal="<?= session()->getFlashdata('message'); ?>">
+                                </div>
+                                <?php if(!logged_in()){ ?>
+                                <?php if($now > $webinarSchedule): ?>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <p>Pendaftaran tutup. Webinar telah selesai.</p>
+                                    </div>
+                                </div>
+                                <?php else: ?>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <p>Silakan login dahulu untuk dapat mendaftar
+                                            ke webinar ini.</p>
+                                    </div>
+                                </div>
+                                <div class="font-weight-bold text-dark">
+                                    <a href="<?= base_url('login') ?>"
+                                        class="btn btn-info btn-block shadow btn--full-width d-unauthenticated-registration-link">Login</a>
+                                </div>
+                                <?php endif; ?>
+                                <?php }elseif(logged_in()){ ?>
+                                <?php if($is_register == 1 && $now < $webinarSchedule): ?>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <p>Anda telah terdaftar pada webinar ini.</p>
+                                    </div>
+                                </div>
+                                <form action="<?= base_url('cancelWebinar') ?>" method="POST"
+                                    enctype="multipart/form-data">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="webinar_id" value="<?= $webinar['webinar_id']; ?>">
+
+                                    <button class="btn btn-danger btn-block shadow">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-pen"></i>
+                                        </span>
+                                        <span class="text">Batal</span>
+                                    </button>
+                                </form>
+                                <!-- <div class="font-weight-bold text-dark">
+                                    <a href="#login-modal"
+                                        class="btn btn-danger btn-block shadow btn--full-width d-unauthenticated-registration-link">Batal</a>
+                                </div> -->
+                                <?php elseif($is_register == null && $now < $webinarSchedule):  ?>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <p>Anda belum terdaftar pada webinar ini.</p>
+                                    </div>
+                                </div>
+                                <form action="<?= base_url('registrasiWebinar') ?>" method="POST"
+                                    enctype="multipart/form-data">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="webinar_id" id="webinar_id"
+                                        value="<?= $webinar['webinar_id']; ?>">
+
+                                    <button class="btn btn-primary btn-block shadow">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-pen"></i>
+                                        </span>
+                                        <span class="text">Daftar</span>
+                                    </button>
+                                </form>
+                                <!-- <div class="font-weight-bold text-dark">
+                                    <a href="#login-modal"
+                                        class="btn btn-primary btn-block shadow btn--full-width d-unauthenticated-registration-link">Daftar</a>
+                                </div> -->
+                                <?php 
+                                /*
+                                Jadi kondisi else di bawah ini jika user sudah login , nah itu yg utama dulu user harus sudah login
+                                jadi jika webinar nya udh lewat/selesai dan user udh pernah daftar webinar maka else di bawah ini di jalankan
+                                jadi jika webinar nya udh lewat/selesai dan user belum pernah daftar sama sekali maka else di bawah ini di jalankan
+                                */
+                                else: 
+                                ?>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <p>Pendaftaran tutup. Webinar telah selesai.</p>
+                                    </div>
+                                </div>
+                                <?php endif; ?>
+                                <?php } ?>
+                            </div>
+                        </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h6 class="m-0 font-weight-bold text-primary">Aksi</h6>
                             </div>
                             <div class="card-body text-justify">
-                                <?php $urlEncode = base_url('pages/' . $slug) ?>
+                                <?php $urlEncode = base_url('pages/' . $webinar['slug']) ?>
                                 <input type="text" class="form-control mb-2" value="<?= $urlEncode ?>" id="myInput"
                                     readonly>
                                 <button onclick="myFunction()" class=" mb-3 btn btn-dark btn-block">
@@ -104,30 +187,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php if ($is_register == 0) { ?>
-                                <form action="<?= base_url('pages/registrasi_webinar') ?>" method="POST"
-                                    enctype="multipart/form-data">
-                                    <!-- <input type="hidden" name="user_id" id="user_id" value="<?= $user['id'] ?>"> -->
-                                    <input type="hidden" name="webinar_id" id="webinar_id" value="<?= $value; ?>">
-                                    <button class="mb-3 btn btn-info btn-block">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-pen"></i>
-                                        </span>
-                                        <span class="text">Ikuti Webinar</span>
-                                    </button>
-                                </form>
-                                <?php } else { ?>
-
-                                <h6 class="m-0 font-weight-bold text-dark mb-3"> Anda telah terdaftar </h6>
-                                <a href="<?= base_url()?>" class="mb-3 btn btn-danger btn-block"
-                                    onclick="return confirm('Yakin?');">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-trash"></i>
-                                    </span>
-                                    <span class="text">Batal</span>
-                                </a>
-
-                                <?php }; ?>
                             </div>
                         </div>
                     </div>
