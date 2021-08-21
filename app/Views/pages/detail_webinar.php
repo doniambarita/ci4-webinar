@@ -101,10 +101,6 @@ $now = strtotime("now");
                                         <span class="text">Batal</span>
                                     </button>
                                 </form>
-                                <!-- <div class="font-weight-bold text-dark">
-                                    <a href="#login-modal"
-                                        class="btn btn-danger btn-block shadow btn--full-width d-unauthenticated-registration-link">Batal</a>
-                                </div> -->
                                 <?php elseif($is_register == null && $now < $webinarSchedule):  ?>
                                 <div class="row justify-content-center">
                                     <div class="col-lg-12">
@@ -124,10 +120,6 @@ $now = strtotime("now");
                                         <span class="text">Daftar</span>
                                     </button>
                                 </form>
-                                <!-- <div class="font-weight-bold text-dark">
-                                    <a href="#login-modal"
-                                        class="btn btn-primary btn-block shadow btn--full-width d-unauthenticated-registration-link">Daftar</a>
-                                </div> -->
                                 <?php 
                                 /*
                                 Jadi kondisi else di bawah ini jika user sudah login , nah itu yg utama dulu user harus sudah login
