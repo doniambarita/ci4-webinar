@@ -28,9 +28,8 @@
     <!-- content -->
     <?= $this->renderSection('content'); ?>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
@@ -38,23 +37,15 @@
     <!-- Fontawesome JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
-    <!-- alert copy link -->
+    <!-- Sweetalert2 JS -->
+    <script src="<?= base_url('vendor/sweetalert/sweetalert2.all.js'); ?>"></script>
+
+    <!-- My Script -->
     <script>
-    function myFunction() {
-        /* Get the text field */
-        var copyText = document.getElementById("myInput");
-
-        /* Select the text field */
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-        /* Copy the text inside the text field */
-        document.execCommand("copy");
-
-        /* Alert the copied text */
-        alert("Link Webinar telah disalin");
-    }
+    var base_url = '<?= base_url(); ?>';
     </script>
+    <script src="<?= base_url('js/script.js'); ?>"></script>
+
 
 </body>
 
