@@ -7,12 +7,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+                <?php if( !logged_in() ): ?>
                 <li class='pr-2'>
-                    <a class="btn btn-outline-secondary text-uppercase" href="">Login</a>
+                    <a class="btn btn-outline-secondary text-uppercase" href="<?= base_url('login'); ?>">Login</a>
                 </li>
+                <li class="pr-2">
+                    <a class="btn btn-primary text-uppercase" href="<?= base_url('register'); ?>">Register</a>
+                </li>
+                <?php endif; ?>
+                <?php if( in_groups('admin') || in_groups('user') ): ?>
+                <li class="pr-2">
+                    <a class="btn btn-outline-secondary text-uppercase"
+                        href="<?= (in_groups('admin') == null) ? base_url('user') : base_url('admin'); ?>">Dashboard</a>
+                </li>
+                <?php endif; ?>
+                <?php if( logged_in() ): ?>
                 <li class="">
-                    <a class="btn btn-primary text-uppercase" href="">Register</a>
+                    <a class="btn btn-primary text-uppercase" href="<?= base_url('logout'); ?>">Logout</a>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
