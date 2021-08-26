@@ -16,6 +16,8 @@ class Webinar extends BaseController
 
 	public function filter()
     {
+        if ($this->request->getMethod() == 'post') {
+
         if($this->request->getVar('order_by') === 'Update Terbaru'){
             $keyword = null;
             $data = $this->webinarModel->getWebinar($keyword);
@@ -62,8 +64,11 @@ class Webinar extends BaseController
 </div>
 
 <?php 
+                    }
                 }
             }
+        }else{
+            throw new \CodeIgniter\Exceptions\PageNotFoundException();
         }
     }
 }
