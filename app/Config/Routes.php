@@ -34,6 +34,23 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
 $routes->get('/pages/(:any)', 'Pages::detail/$1');
+$routes->match(['get', 'post'],'/registrasiWebinar', 'User::registrasiWebinar');
+$routes->match(['get', 'post'],'/cancelWebinar', 'User::cancelWebinar');
+$routes->match(['get', 'post'],'/user/change-password', 'User::changePassword');
+$routes->match(['get', 'post'],'/user/edit-profile', 'User::editProfile');
+$routes->match(['get', 'post'],'/user/my-webinars', 'User::myWebinars');
+$routes->get('/user', 'User::index');
+$routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
+$routes->get('/admin/index', 'Admin::index', ['filter' => 'role:admin']);
+$routes->get('/admin/(:num)', 'Admin::detail/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/detail/(:num)', 'Admin::detail/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/detail', 'Admin::detail', ['filter' => 'role:admin']);
+$routes->match(['get', 'post'],'/admin/new-webinar', 'Admin::newWebinar', ['filter' => 'role:admin']);
+$routes->get('/admin/manage-webinars', 'Admin::manageWebinars', ['filter' => 'role:admin']);
+$routes->get('/admin/manage-webinars/(:any)', 'Admin::detailWebinar/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/manageWebinars/(:any)', 'Admin::detailWebinar/$1', ['filter' => 'role:admin']);
+$routes->match(['get', 'post'],'/admin/edit-webinar/(:any)', 'Admin::editWebinar/$1', ['filter' => 'role:admin']);
+$routes->match(['get', 'post'],'/admin/editWebinar/(:any)', 'Admin::editWebinar/$1', ['filter' => 'role:admin']);
 
 /*
  * --------------------------------------------------------------------
