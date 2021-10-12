@@ -47,6 +47,7 @@ $routes->get('/admin/detail/(:num)', 'Admin::detail/$1', ['filter' => 'role:admi
 $routes->get('/admin/detail', 'Admin::detail', ['filter' => 'role:admin']);
 $routes->match(['get', 'post'],'/admin/new-webinar', 'Admin::newWebinar', ['filter' => 'role:admin']);
 $routes->get('/admin/manage-webinars', 'Admin::manageWebinars', ['filter' => 'role:admin']);
+$routes->get('/admin/manageWebinars', 'Admin::manageWebinars', ['filter' => 'role:admin']);
 $routes->get('/admin/manage-webinars/(:any)', 'Admin::detailWebinar/$1', ['filter' => 'role:admin']);
 $routes->get('/admin/manageWebinars/(:any)', 'Admin::detailWebinar/$1', ['filter' => 'role:admin']);
 $routes->match(['get', 'post'],'/admin/edit-webinar/(:any)', 'Admin::editWebinar/$1', ['filter' => 'role:admin']);
